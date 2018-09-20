@@ -1,25 +1,34 @@
-drop table if exists towns CASCADE;
-create table towns(
+drop table if exists week_days CASCADE;
+create table week_days(
 	id serial not null primary key,
-	town text not null,
-	location_indicator text not null
+	week_day text not null
 );
 
-drop table if exists reg_numbers;
-create table reg_numbers(
+drop table if exists waiters;
+create table waiters(
 	id serial not null primary key,
-    reg_number text not null UNIQUE,
-	town_id int not null,
-    foreign key (town_id) references towns(id)
-	
+    waiter_name text not null UNIQUE
+    
+);
+drop table if exists shifts;
+create table shifts(
+	id serial not null primary key,
+	waiter_id int not null,
+	week_day_id int not null,
+	foreign key (waiter_id) references waiters(id),
+	foreign key (week_day_id) references week_days(id)
 );
 
 
--- Add the locations as well as towns
-INSERT INTO towns (town, location_indicator) VALUES ('Cape Town', 'CA');
-INSERT INTO towns (town, location_indicator) VALUES ('Caledon & Kleinmond', 'CAM');
-INSERT INTO towns (town, location_indicator) VALUES ('Clanwilliam & Lamberts Bay', 'CAR');
-INSERT INTO towns (town, location_indicator) VALUES ('George', 'CAW');
+-- Add the locations as well as week_days
+INSERT INTO week_days (week_day) VALUES ('Sunday');
+INSERT INTO week_days (week_day) VALUES ('Monday');
+INSERT INTO week_days (week_day) VALUES ('Tuesday');
+INSERT INTO week_days (week_day) VALUES ('Wednesday');
+INSERT INTO week_days (week_day) VALUES ('Thursday');
+INSERT INTO week_days (week_day) VALUES ('Friday');
+INSERT INTO week_days (week_day) VALUES ('Saturday');
+
 
 
 
