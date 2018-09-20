@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 let routes = require('./routes');
-let regNumFactory = require('./registration_plates');
+// let regNumFactory = require('./registration_plates');
 var app = express();
 
 // view engine setup
@@ -10,14 +10,14 @@ app.set('views', path.join(__dirname, 'views'));
 const exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({
     defaultLayout: 'main',
-    helpers: {
-        selectTowns: function () {
-            if (this.checked) {
-                return "selected";
-            }
+    // helpers: {
+    //     selectTowns: function () {
+    //         if (this.checked) {
+    //             return "selected";
+    //         }
 
-        }
-    }
+    //     }
+    // }
 }));
 app.set('view engine', 'handlebars');
 
@@ -38,15 +38,15 @@ if (process.env.DATABASE_URL && !local) {
     useSSL = true;
 }
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/reg_numb';
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/waiter_db';
 
 const pool = new Pool({
     connectionString,
     ssl: useSSL
 });
 
-let regNumbers = regNumFactory(pool);
-let regRoutes =routes(regNumbers);
+// let regNumbers = regNumFactory(pool);
+ let waiterRoutes =routes();
 
 //----------Flash Messanging -------------//
 const flash = require('express-flash');
@@ -61,13 +61,13 @@ app.use(session({
 // initialise the flash middleware
 app.use(flash());
 
-app.get('/', regRoutes.show);
-app.post('/waiters/:username', regRoutes.showAdd);
-app.get('/waiters/:username', regRoutes.filter);
-app.get('/days', regRoutes.reset);
+app.get('/', waiterRoutes.show);
+// app.post('/waiters/:username', waiterRoutes.showAdd);
+// app.get('/waiters/:username', waiterRoutes.filter);
+// app.get('/days', waiterRoutes.reset);
 
 //configure the port number using and environment number
-var portNumber = process.env.PORT || 3313;
+var portNumber = process.env.PORT || 3314;
 
 //start everything up
 app.listen(portNumber, function () {

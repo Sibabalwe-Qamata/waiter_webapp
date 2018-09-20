@@ -21,12 +21,6 @@ INSERT INTO towns (town, location_indicator) VALUES ('Caledon & Kleinmond', 'CAM
 INSERT INTO towns (town, location_indicator) VALUES ('Clanwilliam & Lamberts Bay', 'CAR');
 INSERT INTO towns (town, location_indicator) VALUES ('George', 'CAW');
 
-INSERT INTO towns (town, location_indicator) VALUES ('Stellenbosch', 'CL');
-INSERT INTO towns (town, location_indicator) VALUES ('Wellington', 'CN');
-INSERT INTO towns (town, location_indicator) VALUES ('Worcester', 'CW');
-INSERT INTO towns (town, location_indicator) VALUES ('Bellville, Durbanville & Kraaifontein', 'CY');
-INSERT INTO towns (town, location_indicator) VALUES ('Beaufort West', 'CZ');
-INSERT INTO towns (town, location_indicator) VALUES ('Paarl', 'CJ');
 
 
 
