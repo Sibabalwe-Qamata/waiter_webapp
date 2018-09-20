@@ -1,0 +1,81 @@
+  <div class="container">
+    <div class="row header">
+      <div class="twelve columns"> 
+        <h1>Registration Numberplates Webapp</h1>
+      </div>
+    </div>
+
+    <div class="row entry">
+        <div class="twelve columns">
+          
+           <p id="messages">{{messages.info}}</p>
+           
+             <p id="errorMessages" style="color:red">{{messages.error}}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="twelve columns">
+            <div class="twelve columns">
+              <form action="/reg_numbers" method="post">
+              <input name="regValue" id="numberPlate"  maxlength="11" pattern="[A-Z]{2,3}\s\d{3}\W\d{3}|[A-Z]{2,3}\s\d{2,8}" onkeyup="lettersOnly(this)" placeholder="enter registration number" class="regNumber"   title="Please enter a Number Plate e.g 'CA 310-104 OR CAW 0034'"/>
+               <input type="submit" value="Add"> 
+              </form>
+            </div>
+       
+        </div>
+    </div>
+
+    <div class="row">
+          <div class="twelve columns">
+            
+                <div class="normalFilter">
+                    <select class="selectWhichTown" onchange="filterTown()" name="selectTown">
+                      <option class="selectWhichTown"  value="All">All Towns</option>
+                      {{#each drop_down}}
+                      <option class="selectWhichTowns" {{selectTowns}} value="{{location_indicator}}">{{town}}</option>
+                        {{/each}}
+                    </select>
+                  </div>
+          </div>
+    </div>
+
+
+    <div class="row">
+
+      <div class="twelve columns">
+
+           <ul class="registrationNum">
+            {{#each displayRegs}}
+                    <li>{{reg_number}}</li>
+             {{/each}} 
+            </ul>
+      </div>
+    </div>
+  
+<hr>
+    <div class="row">
+      <div class="twelve columns">
+          <a href="/reset">
+              <button class="button reset">Reset</button>
+          </a>
+      </div>
+    </div>
+<hr>
+    <div class="row">
+        <div class="twelve columns">
+            <footer>
+                <p>Proudly developed by Sibabalwe Qamata &copy; 2018</p>
+            </footer>
+        </div>
+    </div>
+
+  </div>
+
+  <script>
+    function filterTown (){
+      var selectedTown = document.querySelector(".selectWhichTown");
+
+      location.href = "/filter/"+selectedTown.value;
+    }
+  </script>

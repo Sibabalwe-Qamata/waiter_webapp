@@ -1,0 +1,146 @@
+h1 {
+    text-shadow: 4px 4px 4px #aaa;
+    margin: 10px auto;
+    font-size: 4em;
+    color: #333;
+    text-decoration-style: wavy;
+    text-underline-position: below;
+
+}
+
+body {
+    text-align: center;
+    margin: 0px auto;
+    background: #E0EAFC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    font-family: Arial, Helvetica, sans-serif;
+   
+
+}
+
+#numberPlate{
+    padding: 0.55em;
+}
+
+
+
+.button:hover,
+.button:focus {
+    background-color: rgb(29, 135, 159);
+    color: rgb(0, 0, 0);
+}
+
+.writer {
+    font-style: italic;
+    width: 100%;
+}
+
+.Quote {
+    font-family: 'Cardo', serif;
+    font-size: 1.5em;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    background-color: #efefef;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    ;
+    border-radius: 20px;
+    color: #000;
+    box-shadow: -10px 10px 20px rgba(100, 100, 100, .8);
+    ;
+}
+
+
+.counter {
+    padding-left: 5%;
+    font-size:1.2em; 
+    padding-bottom: 5%;
+}
+
+
+.number {
+    padding-left: 2%;
+}
+ 
+span{
+    padding-bottom: 5%;
+}
+
+/*--------------------------------------------------*/
+
+
+.list-plates{
+    width: 80%;
+}
+
+
+.registrationNum li {
+    background-color:grey;
+    background-position: 10px 10px;
+    border: 1px solid black;
+    border-radius: 20px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 12px;
+    margin-top: 5px;
+    padding: 12px 20px 12px 40px;
+    text-align: center;
+    width: 200px;
+    float: left;
+    list-style-type: none;
+    margin-left: 10%;  
+
+}
+
+.townsNotFound{
+    color: green;
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  .userErrors{
+    background-color:white;
+    background-position: 30px 30px;
+    border: 2px solid black;
+    border-radius: 20%;
+    font-weight: bold;
+    margin-bottom: 12px;
+    margin-top: 5px;
+    padding: 12px 20px 12px 40px;
+    text-align: center;
+    width: 100%;
+    color : red;
+    font-size: 85%;
+
+  }
+.header{
+    border: 1px solid #000;
+}
+.entry{
+    color: green;
+  
+}
+#messages{
+    font-size: 120%;
+    text-decoration-color: green;
+    
+}
+
+#errorMessages{
+    font-size: 120%;
+    text-decoration-color: red;
+}
+#box{
+    border: 1px solid #000;
+    border-radius: 4%;
+}
+
+
+
+
+
