@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 let routes = require('./routes');
-// let regNumFactory = require('./registration_plates');
+let waiterFactory = require('./waiters');
 var app = express();
 
 // view engine setup
@@ -45,8 +45,8 @@ const pool = new Pool({
     ssl: useSSL
 });
 
-// let regNumbers = regNumFactory(pool);
- let waiterRoutes =routes();
+ let waitersFac =  waiterFactory(pool);
+ let waiterRoutes =  routes(waitersFac);
 
 //----------Flash Messanging -------------//
 const flash = require('express-flash');
@@ -61,10 +61,10 @@ app.use(session({
 // initialise the flash middleware
 app.use(flash());
 
-app.get('/', waiterRoutes.show);
-// app.post('/waiters/:username', waiterRoutes.showAdd);
-// app.get('/waiters/:username', waiterRoutes.filter);
-// app.get('/days', waiterRoutes.reset);
+//app.get('/', waiterRoutes.show);
+app.get('/waiters/:name', waiterRoutes.show);
+app.post('/waiters/:name', waiterRoutes.showAdd);
+app.get('/days', waiterRoutes.admin);
 
 //configure the port number using and environment number
 var portNumber = process.env.PORT || 3314;

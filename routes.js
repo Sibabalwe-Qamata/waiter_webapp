@@ -1,73 +1,46 @@
-module.exports =  function () {
+
+
+module.exports =  function (waitersFac) {
 
                     async function show (req,res) {
 
                         try {
                             res.render('home');
+
+                            let {name} = req.params;
+                            //console.log(name);
+                            let staffName = await waitersFac.enterWaiterName(name);
+                            console.log(staffName);
+                            
                         } catch (error) {
                             res.redirect("/");
                         }
-
                     };
 
-                    // async function showAdd (req, res, next) {
-                    //     try {
-                    //         let {
-                    //             regValue
-                    //         } = req.body;
-                    //         let result = await regNumbers.enterRegPlate(regValue);
+                    async function showAdd (req, res) {
+                        try {
+                          
+                            res.render('home');
 
-                    //         if (result.success === true) {
-                    //             req.flash('info', result.message);
-                    //             res.redirect("/");
-                    //         } else if (result.success === false) {
-
-                    //             req.flash('error', result.message);
-                    //             res.redirect("/");
-                    //         }
-
-
-                    //     } catch (error) {
-                    //         next(error);
-                    //     }
-                    // };
+                        } catch (error) {
+                           
+                        }
+                    };
                     
-                    // async function filter (req, res)
-                    // {
-                    //     try {
-                    //         let {
-                    //             townTag
-                    //         } = req.params;
-                    //         let displayRegs = await regNumbers.filterTown(townTag);
-                    //         let drop_down = await regNumbers.dropDown(townTag);
+                    async function admin (req, res)
+                    {
+                        try {
+                            res.render("days");
+                        } catch (error) {
+                         
+                        }
+                    };
 
-
-                    //         res.render("home", {
-                    //             displayRegs,
-                    //             drop_down
-                    //         });
-
-
-                    //     } catch (error) {
-                    //         res.redirect("/");
-                    //     }
-                    // };
-
-                    // async function reset(req, res) {
-                    //     try {
-                    //         await regNumbers.resetDataBase();
-                    //         req.flash('info', 'The database has just been cleared!');
-                    //         res.redirect("/");
-                    //     } catch (error) {
-                    //         res.redirect("/");
-                    //     }
-                    // };
-
-
+    
                     return{
-                        show
-                        // showAdd,
-                        // filter,
-                        // reset
+                        show,
+                        showAdd,
+                        admin
+                     
                     }
                 }

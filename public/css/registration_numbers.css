@@ -11,9 +11,9 @@ h1 {
 body {
     text-align: center;
     margin: 0px auto;
-    background: #E0EAFC;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #a8ff78;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #78ffd6, #a8ff78);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #78ffd6, #a8ff78); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     font-family: Arial, Helvetica, sans-serif;
    
@@ -140,6 +140,60 @@ span{
     border-radius: 4%;
 }
 
+/* --------------------------------------------------------------*/
+
+.weekDays-selector input {
+    display: none!important;
+  }
+  
+  .weekDays-selector input[type=checkbox] + label {
+    display: inline-block;
+    border-radius: 10px;
+    background: #dddddd;
+    height: 40px;
+    width: 80px;
+ 
+    margin-right: 6px;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .weekDays-selector input[type=checkbox]:checked + label {
+    background: #2AD705;
+    color: #ffffff;
+  }
+  
+  .entry{
+      margin: 3%;
+  }
+
+  .begin{
+      padding-left: 60%;
+  
+  }
+  .end{
+      margin: 2%;
+  }
+
+  .button{
+      background: aqua;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+}
+  table, td, th {    
+    border: 1px solid black;
+    text-align: left;
+}
+
+th, td {
+    padding: 15px;
+}
+  .centerTable { margin: 0px auto; }
+  .admin-btn{margin-top: 25px;}
 
 
 
