@@ -10,7 +10,11 @@ module.exports =  function (waitersFac) {
                             let {name} = req.params;
                             //console.log(name);
                             let staffName = await waitersFac.enterWaiterName(name);
-                            console.log(staffName);
+                            let all = await waitersFac.getWaiters();
+
+                            let allDay = await waitersFac.getDays();
+                            console.log("Names: ", all);
+                            console.log("Days:", allDay);
                             
                         } catch (error) {
                             res.redirect("/");
