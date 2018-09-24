@@ -10,14 +10,14 @@ app.set('views', path.join(__dirname, 'views'));
 const exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({
     defaultLayout: 'main',
-    // helpers: {
-    //     selectTowns: function () {
-    //         if (this.checked) {
-    //             return "selected";
-    //         }
+    helpers: {
+        selectDay: function () {
+            if (this.checked) {
+                return "selected";
+            }
 
-    //     }
-    // }
+        }
+    }
 }));
 app.set('view engine', 'handlebars');
 

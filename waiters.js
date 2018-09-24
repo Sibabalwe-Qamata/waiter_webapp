@@ -6,8 +6,25 @@ module.exports = function (pool) {
       let list =  await pool.query('INSERT into waiters (waiter_name) values ($1)', [waiterName]);
         return {
             success : true,
-            message : "Successfully Added Registration Number"
+            message : "Successfully Added Waiter"
         }
+    }
+
+    async function selectedDay(TownChoice) 
+    {    
+
+        let dayPicked = await pool.query('SELECT * FROM week_days');
+       if(TownChoice != undefined || TownChoice !=''){
+        for(var k=0; k < townPicked.rows.length ; k++)
+        {
+            
+            if(townPicked.rows[k].location_indicator === TownChoice){
+                townPicked.rows[k].checked = true;
+            }
+            
+        }
+       }    
+        return townPicked.rows;
     }
 
     async function getWaiters() {
