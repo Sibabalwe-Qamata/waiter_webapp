@@ -18,20 +18,20 @@ module.exports = function (pool) {
         }
     }
 
-    async function selectedDay(TownChoice) {
+    // async function selectedDay(TownChoice) {
 
-        let dayPicked = await pool.query('SELECT * FROM week_days');
-        if (TownChoice != undefined || TownChoice != '') {
-            for (var k = 0; k < townPicked.rows.length; k++) {
+    //     let dayPicked = await pool.query('SELECT * FROM week_days');
+    //     if (TownChoice != undefined || TownChoice != '') {
+    //         for (var k = 0; k < townPicked.rows.length; k++) {
 
-                if (townPicked.rows[k].location_indicator === TownChoice) {
-                    townPicked.rows[k].checked = true;
-                }
+    //             if (townPicked.rows[k].location_indicator === TownChoice) {
+    //                 townPicked.rows[k].checked = true;
+    //             }
 
-            }
-        }
-        return townPicked.rows;
-    }
+    //         }
+    //     }
+    //     return townPicked.rows;
+    // }
 
     async function duplicateCheck(waiterName) {
         let nameDuplicate = await pool.query('SELECT * FROM waiters WHERE waiter_name=$1', [waiterName]);
