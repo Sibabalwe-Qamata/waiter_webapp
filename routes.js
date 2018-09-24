@@ -1,50 +1,76 @@
+module.exports = function (waitersFac) {
+
+    async function show(req, res) {
+
+        try {
+            let {
+                name
+            } = req.params;
+            console.log(name)
+
+            res.render('home', {
+                name
+            });
+
+        } catch (error) {
+            res.redirect("/");
+        }
+    };
+
+    async function showAdd(req, res, next) {
+        try {
+            let {
+                name
+            } = req.params;
+            let {
+                day
+            } = req.body;
+            let staffName = await waitersFac.enterWaiterName(name);
+            //console.log("Days:", day);
+
+            let workDay = await waitersFac.checkDays(day);
+            //console.log(workDay);
+            res.redirect('/waiters/' + name)
+            //console.log("From the DB: ", staffName);
 
 
-module.exports =  function (waitersFac) {
+            console.log("WorkDay: ", workDay);
 
-                    async function show (req,res) {
+            // if (staffName.message === true) {
+            //     req.flash('info', result.message);
+            //     res.redirect('/waiters/' + name)
 
-                        try {
-                            res.render('home');
+            // } else if (staffName.message === false) {
+            //     req.flash('error', result.message);
+            //     res.redirect('/waiters/' + name);
+            // }
 
-                            let {name} = req.params;
-                            //console.log(name);
-                            let staffName = await waitersFac.enterWaiterName(name);
-                            let all = await waitersFac.getWaiters();
+           
+        } catch (error) {
+            next(error);
+        }
+    };
 
-                            let allDay = await waitersFac.getDays();
-                            console.log("Names: ", all);
-                            console.log("Days:", allDay);
-                            
-                        } catch (error) {
-                            res.redirect("/");
-                        }
-                    };
+    async function admin(req, res) {
+        try {
 
-                    async function showAdd (req, res) {
-                        try {
-                          
-                            res.render('home');
+            res.render("days");
 
-                        } catch (error) {
-                           
-                        }
-                    };
-                    
-                    async function admin (req, res)
-                    {
-                        try {
-                            res.render("days");
-                        } catch (error) {
-                         
-                        }
-                    };
+            let all = await waitersFac.getWaiters();
 
-    
-                    return{
-                        show,
-                        showAdd,
-                        admin
-                     
-                    }
-                }
+            let allDay = await waitersFac.getDays();
+            console.log("Names: ", all);
+            console.log("Days:", allDay);
+        } catch (error) {
+
+        }
+    };
+
+
+    return {
+        show,
+        showAdd,
+        admin
+
+    }
+}
