@@ -61,6 +61,8 @@ module.exports = function (pool) {
 
         let workingDay = await pool.query('SELECT id FROM week_days WHERE week_day=$1',[workDay]);
 
+        console.log(workingDay);
+
         let waiterName = await pool.query('SELECT id FROM waiters WHERE waiter_name=$1', [name]);
         
     }
