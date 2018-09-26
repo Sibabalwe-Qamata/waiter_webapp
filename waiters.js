@@ -8,7 +8,6 @@ module.exports = function (pool) {
                 success: false,
                 message: "Name entered already exists. Please enter another name!"
             }
-
         }
 
         await pool.query('INSERT into waiters (waiter_name) values ($1)', [waiterName]);
@@ -17,22 +16,6 @@ module.exports = function (pool) {
             message: "Successfully Added Waiter"
         }
     }
-
-    // async function selectedDay(TownChoice) {
-
-    //     let dayPicked = await pool.query('SELECT * FROM week_days');
-    //     if (TownChoice != undefined || TownChoice != '') {
-    //         for (var k = 0; k < townPicked.rows.length; k++) {
-
-    //             if (townPicked.rows[k].location_indicator === TownChoice) {
-    //                 townPicked.rows[k].checked = true;
-    //             }
-
-    //         }
-    //     }
-    //     return townPicked.rows;
-    // }
-
     async function duplicateCheck(waiterName) {
         let nameDuplicate = await pool.query('SELECT * FROM waiters WHERE waiter_name=$1', [waiterName]);
         return nameDuplicate.rowCount === 1;
@@ -42,28 +25,34 @@ module.exports = function (pool) {
     {
         if(Array.isArray(ShiftDay) === true)
         {    
-            return {
-                success: true,
-                daysShift: ShiftDay
-            }
+            return  ShiftDay;
         }
         else if(Array.isArray(ShiftDay) === false){ 
             let DayList = ShiftDay.split();
-            return{
-                success : false,
-                daysShift: DayList
-            }
+            return DayList  
         }
     }
 
-    async function getName_Day(name, workDay)
+    async function getWorkerId(workerName){
+        let waiterName = await pool.query('SELECT id FROM waiters WHERE waiter_name=$1', [workerName]);
+
+        let waiterId = waiterName.rows[0].id;
+    }
+
+    async function getDayId(checkDays){
+       let workDay = checkDays;
+       for (let index = 0; index < workDay.length; index++) {
+           const element = workDay[index];
+           let workingDayId = await pool.query('SELECT id FROM week_days WHERE week_day=$1',[element]); 
+           
+           let dayId = workingDayId.rows[0].id;
+       }
+    }
+
+    async function addShifts(name, workDay)
     {
 
-        let workingDay = await pool.query('SELECT id FROM week_days WHERE week_day=$1',[workDay]);
-
-        console.log(workingDay);
-
-        let waiterName = await pool.query('SELECT id FROM waiters WHERE waiter_name=$1', [name]);
+    
         
     }
 

@@ -29,7 +29,9 @@ module.exports = function (waitersFac) {
             //console.log("Days:", day);
 
             let workDay = await waitersFac.checkDays(day);
-            //console.log(workDay);
+
+            let getWorker = await waitersFac.getName_Day(name,day);
+            console.log(getWorker);
             res.redirect('/waiters/' + name)
             //console.log("From the DB: ", staffName);
 
