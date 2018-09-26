@@ -37,23 +37,29 @@ module.exports = function (pool) {
         let waiterName = await pool.query('SELECT id FROM waiters WHERE waiter_name=$1', [workerName]);
 
         let waiterId = waiterName.rows[0].id;
+
+        return waiterId;
     }
 
     async function getDayId(checkDays){
        let workDay = checkDays;
+
+       let dayId = '';
        for (let index = 0; index < workDay.length; index++) {
            const element = workDay[index];
            let workingDayId = await pool.query('SELECT id FROM week_days WHERE week_day=$1',[element]); 
            
-           let dayId = workingDayId.rows[0].id;
+            dayId = workingDayId.rows[0].id;
        }
+       return dayId;
     }
 
     async function addShifts(name, workDay)
     {
-
-    
-        
+       let workerShift =  await getWorkerId(name);
+       console.log("Worker: ", workerShift);
+        let dayShift = await getDayId(workDay);
+        console.log("Days: ", dayShift);
     }
 
     async function getWaiters() {
@@ -68,11 +74,13 @@ module.exports = function (pool) {
 
     return {
         enterWaiterName: setWaiter,
+        addShifts,
         getWaiters,
         getDays,
         duplicateCheck,
-        checkDays
-
+        checkDays,
+        getDayId,
+        getWorkerId
     }
 
 }

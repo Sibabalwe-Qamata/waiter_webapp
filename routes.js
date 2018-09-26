@@ -6,7 +6,7 @@ module.exports = function (waitersFac) {
             let {
                 name
             } = req.params;
-            console.log(name)
+            //console.log(name)
 
             res.render('home', {
                 name
@@ -30,13 +30,13 @@ module.exports = function (waitersFac) {
 
             let workDay = await waitersFac.checkDays(day);
 
-            let getWorker = await waitersFac.getName_Day(name,day);
-            console.log(getWorker);
+            let getWorker = await waitersFac.addShifts(name,day);
+            //console.log(getWorker);
             res.redirect('/waiters/' + name)
             //console.log("From the DB: ", staffName);
 
 
-            console.log("WorkDay: ", workDay);
+            //console.log("WorkDay: ", workDay);
 
             // if (staffName.message === true) {
             //     req.flash('info', result.message);
@@ -61,8 +61,8 @@ module.exports = function (waitersFac) {
             let all = await waitersFac.getWaiters();
 
             let allDay = await waitersFac.getDays();
-            console.log("Names: ", all);
-            console.log("Days:", allDay);
+            //console.log("Names: ", all);
+           // console.log("Days:", allDay);
         } catch (error) {
 
         }
