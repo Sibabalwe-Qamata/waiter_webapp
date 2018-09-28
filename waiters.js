@@ -46,9 +46,9 @@ module.exports = function (pool) {
 
        let workDay = checkDays;
 
-       console.log("Day List: ",workDay);
+    //    console.log("Day List: ",workDay);
 
-       console.log("Type Of: ",typeof(workDay));
+    //    console.log("Type Of: ",typeof(workDay));
 
 
 
@@ -87,7 +87,7 @@ module.exports = function (pool) {
     async function addShifts(name, workDay)
     {
        let workerShift =  await getWorkerId(name);
-       console.log("Worker: ", workerShift);
+       //console.log("Worker: ", workerShift);
         let dayShift = await getDayId(workDay);
         console.log("Days: ", dayShift);
 
