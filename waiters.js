@@ -42,16 +42,46 @@ module.exports = function (pool) {
     }
 
     async function getDayId(checkDays){
+
+
        let workDay = checkDays;
 
+       console.log("Day List: ",workDay);
+
+       console.log("Type Of: ",typeof(workDay));
+
+
+
        let dayId = '';
-       for (let index = 0; index < workDay.length; index++) {
-           const element = workDay[index];
-           let workingDayId = await pool.query('SELECT id FROM week_days WHERE week_day=$1',[element]); 
-           
-            dayId = workingDayId.rows[0].id;
+
+       let days = []
+       let workDays = '';
+
+       if((typeof(workDay) === '') || (Array.isArray(workDay) === false)){
+              workDays  = workDay.split();
+
+            for (let index = 0; index < workDays.length; index++) {
+                const element = workDays[index];
+                let workingDayId = await pool.query('SELECT id FROM week_days WHERE week_day=$1',[element]); 
+                
+                 dayId = workingDayId.rows[0].id;
+     
+                 days.push(dayId);
+            }
+            return days;
        }
-       return dayId;
+       else if (Array.isArray(workDay) === true){
+        for (let index = 0; index < workDay.length; index++) {
+            const element = workDay[index];
+            let workingDayId = await pool.query('SELECT id FROM week_days WHERE week_day=$1',[element]); 
+            
+             dayId = workingDayId.rows[0].id;
+ 
+             days.push(dayId);
+        }
+        return days;
+       }
+      
     }
 
     async function addShifts(name, workDay)
