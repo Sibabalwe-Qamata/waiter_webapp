@@ -90,6 +90,11 @@ module.exports = function (pool) {
        console.log("Worker: ", workerShift);
         let dayShift = await getDayId(workDay);
         console.log("Days: ", dayShift);
+
+        for (let index = 0; index < dayShift.length; index++) {
+            const element = dayShift[index];
+            await pool.query('INSERT into shifts (waiter_id, week_day_id) values ($1,$2)', [workerShift, element]); 
+        }
     }
 
     async function getWaiters() {
