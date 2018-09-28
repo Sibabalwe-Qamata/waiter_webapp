@@ -4,7 +4,7 @@ create table week_days(
 	week_day text not null
 );
 
-drop table if exists waiters;
+drop table if exists waiters CASCADE;
 create table waiters(
 	id serial not null primary key,
     waiter_name text not null UNIQUE
