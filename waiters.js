@@ -102,6 +102,18 @@ module.exports = function (pool) {
         return allWaiters.rows;
     }
 
+    async function getShiftId() {
+        let allShifts = await pool.query('SELECT  week_day_id FROM shifts');
+        return allShifts.rows;
+        
+    }
+
+
+    async function getWaiterId() {
+        let allShiftsWaiter = await pool.query('SELECT  waiter_id FROM shifts');
+        return allShiftsWaiter.rows;
+        
+    }
     async function getDays() {
         let allDays = await pool.query('SELECT * from week_days');
         return allDays.rows;
