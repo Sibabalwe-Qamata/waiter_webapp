@@ -44,14 +44,7 @@ module.exports = function (pool) {
     async function getDayId(checkDays){
 
 
-       let workDay = checkDays;
-
-    //    console.log("Day List: ",workDay);
-
-    //    console.log("Type Of: ",typeof(workDay));
-
-
-
+       let workDay = checkDays
        let dayId = '';
 
        let days = []
@@ -104,15 +97,27 @@ module.exports = function (pool) {
 
     async function getShiftId() {
         let allShifts = await pool.query('SELECT  week_day_id FROM shifts');
+
+        for (let index = 0; index < allShifts.length; index++) {
+            const element = allShifts.rows[index];
+            console.log(element);
+        }
+
         return allShifts.rows;
         
     }
-
 
     async function getWaiterId() {
         let allShiftsWaiter = await pool.query('SELECT  waiter_id FROM shifts');
         return allShiftsWaiter.rows;
         
+    }
+
+    async function dataCollected() 
+    {
+        let dataCollection = await pool.query("SELECT id, week_day from week_days join shifts ON shifts.week_day_id = week_days.id join waiters.id = shifts.waiter_id");
+
+        return dataCollection;
     }
     async function getDays() {
         let allDays = await pool.query('SELECT * from week_days');
@@ -127,7 +132,12 @@ module.exports = function (pool) {
         duplicateCheck,
         checkDays,
         getDayId,
-        getWorkerId
+        getWorkerId,
+
+
+        getShiftId,
+        getWaiterId,
+        dataCollected
     }
 
 }

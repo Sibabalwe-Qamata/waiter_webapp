@@ -61,8 +61,15 @@ module.exports = function (waitersFac) {
             let all = await waitersFac.getWaiters();
 
             let allDay = await waitersFac.getDays();
-            //console.log("Names: ", all);
-           // console.log("Days:", allDay);
+
+            let workerId = await waitersFac.getWaiterId();
+
+            let shifts = await waitersFac.getShiftId();
+
+            let data = await waitersFac.dataCollected();
+
+            console.log("Data: ", data);
+           console.log("Shift ID:", shifts);
         } catch (error) {
 
         }
