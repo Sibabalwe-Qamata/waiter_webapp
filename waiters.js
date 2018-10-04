@@ -10,11 +10,16 @@ module.exports = function (pool) {
             }
         }
 
+
+
+
+
+
+
+
+
         await pool.query('INSERT into waiters (waiter_name) values ($1)', [waiterName]);
-        return {
-            success: true,
-            message: "Successfully Added Waiter"
-        }
+        
     }
     async function duplicateCheck(waiterName) {
         let nameDuplicate = await pool.query('SELECT * FROM waiters WHERE waiter_name=$1', [waiterName]);
@@ -33,7 +38,8 @@ module.exports = function (pool) {
         }
     }
 
-    async function getWorkerId(workerName){
+    async function getWorkerId(workerName)
+    {
         let waiterName = await pool.query('SELECT id FROM waiters WHERE waiter_name=$1', [workerName]);
 
         let waiterId = waiterName.rows[0].id;
@@ -42,11 +48,8 @@ module.exports = function (pool) {
     }
 
     async function getDayId(checkDays){
-
-
        let workDay = checkDays
        let dayId = '';
-
        let days = []
        let workDays = '';
 
@@ -69,7 +72,6 @@ module.exports = function (pool) {
             let workingDayId = await pool.query('SELECT id FROM week_days WHERE week_day=$1',[element]); 
             
              dayId = workingDayId.rows[0].id;
- 
              days.push(dayId);
         }
         return days;
@@ -80,44 +82,44 @@ module.exports = function (pool) {
     async function addShifts(name, workDay)
     {
        let workerShift =  await getWorkerId(name);
-       //console.log("Worker: ", workerShift);
         let dayShift = await getDayId(workDay);
-        console.log("Days: ", dayShift);
 
+        
         for (let index = 0; index < dayShift.length; index++) {
             const element = dayShift[index];
             await pool.query('INSERT into shifts (waiter_id, week_day_id) values ($1,$2)', [workerShift, element]); 
         }
+
+
+
+        // let data = await dataCollected(name);
+        // console.log("Data",data);
     }
 
-    async function getWaiters() {
-        let allWaiters = await pool.query('SELECT * from waiters');
-        return allWaiters.rows;
+    async function dataCollected() 
+    {
+        //let dataCollection = await pool.query("SELECT id, week_day from week_days join shifts ON shifts.week_day_id = week_days.id join waiters.id = shifts.waiter_id");
+
+        let data = await pool.query("SELECT week_days.id, week_days.week_day from week_days join shifts ON shifts.week_day_id = week_days.id WHERE waiter_id = shifts.waiter_id");
+        
+        return data;
     }
+
+
 
     async function getShiftId() {
         let allShifts = await pool.query('SELECT  week_day_id FROM shifts');
-
-        for (let index = 0; index < allShifts.length; index++) {
-            const element = allShifts.rows[index];
-            console.log(element);
-        }
-
         return allShifts.rows;
-        
     }
 
     async function getWaiterId() {
         let allShiftsWaiter = await pool.query('SELECT  waiter_id FROM shifts');
         return allShiftsWaiter.rows;
-        
     }
 
-    async function dataCollected() 
-    {
-        let dataCollection = await pool.query("SELECT id, week_day from week_days join shifts ON shifts.week_day_id = week_days.id join waiters.id = shifts.waiter_id");
-
-        return dataCollection;
+    async function getWaiters() {
+        let allWaiters = await pool.query('SELECT * from waiters');
+        return allWaiters.rows;
     }
     async function getDays() {
         let allDays = await pool.query('SELECT * from week_days');

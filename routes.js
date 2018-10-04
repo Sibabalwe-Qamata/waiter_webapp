@@ -6,11 +6,7 @@ module.exports = function (waitersFac) {
             let {
                 name
             } = req.params;
-            //console.log(name)
-
-            res.render('home', {
-                name
-            });
+            res.render('home', {name});
 
         } catch (error) {
             res.redirect("/");
@@ -31,7 +27,16 @@ module.exports = function (waitersFac) {
             let workDay = await waitersFac.checkDays(day);
 
             let getWorker = await waitersFac.addShifts(name,day);
-            //console.log(getWorker);
+
+
+
+            let workerId = await waitersFac.getWaiterId(name);
+
+          
+
+            //let days = await waitersFac.dataCollected(name);
+
+           // /console.log(days);
             res.redirect('/waiters/' + name)
             //console.log("From the DB: ", staffName);
 
@@ -58,18 +63,22 @@ module.exports = function (waitersFac) {
 
             res.render("days");
 
+            let data = await waitersFac.dataCollected();
+
+           
+
             let all = await waitersFac.getWaiters();
 
             let allDay = await waitersFac.getDays();
 
-            let workerId = await waitersFac.getWaiterId();
-
             let shifts = await waitersFac.getShiftId();
 
-            let data = await waitersFac.dataCollected();
+            let days = await waitersFac.dataCollected();
 
-            console.log("Data: ", data);
-           console.log("Shift ID:", shifts);
+            console.log(days);
+         
+
+         
         } catch (error) {
 
         }
