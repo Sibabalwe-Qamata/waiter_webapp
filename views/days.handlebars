@@ -15,17 +15,19 @@
         <div class="twelve columns">
             <table  class="centerTable">
                 <tr>
-                    <th>Day</th>
                     <th>Number of Waiters available</th>
+                    <th>Day</th>
                     <th>Waiter Names</th>
                 </tr>
-                {{!-- {{#each billArray}} --}}
+                {{#each shifts}}
                 <tr>
-                    <td>Monday</td>
+                  
                     <td>3</td>
-                    <td>Pop, Bob, Ed </td>
+                    <td>Monday</td>
+                    <td>{{shifts.waiter_name}} </td>
+                   
                 </tr>
-                {{!-- {{/each}} --}}
+                {{/each}}
             </table>
         </div>
     </div>

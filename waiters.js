@@ -107,6 +107,11 @@ module.exports = function (pool) {
         let allShifts = await pool.query('SELECT * from week_days join shifts on shifts.week_day_id=week_days.id join waiters on waiters.id = shifts.waiter_id');
         
         let convertShift = allShifts.rows;
+
+        convertShift.forEach(waiter => {
+            delete waiter.id, waiter.waiter_id, waiter.week_day_id;
+          });
+
         return convertShift;
     }
 

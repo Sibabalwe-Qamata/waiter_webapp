@@ -61,7 +61,7 @@ module.exports = function (waitersFac) {
     async function admin(req, res) {
         try {
 
-            res.render("days");
+           
 
             let data = await waitersFac.dataCollected();
 
@@ -78,7 +78,7 @@ module.exports = function (waitersFac) {
 
             
          
-
+            res.render("days", shifts);
          
         } catch (error) {
 
