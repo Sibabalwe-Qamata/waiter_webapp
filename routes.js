@@ -22,7 +22,7 @@ module.exports = function (waitersFac) {
                 day
             } = req.body;
             let staffName = await waitersFac.enterWaiterName(name);
-            //console.log("Days:", day);
+          
 
             let workDay = await waitersFac.checkDays(day);
 
@@ -72,10 +72,11 @@ module.exports = function (waitersFac) {
             let allDay = await waitersFac.getDays();
 
             let shifts = await waitersFac.getShiftId();
+            console.log(shifts);
 
             let days = await waitersFac.dataCollected();
 
-            console.log(days);
+            
          
 
          

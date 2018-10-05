@@ -9,15 +9,6 @@ module.exports = function (pool) {
                 message: "Name entered already exists. Please enter another name!"
             }
         }
-
-
-
-
-
-
-
-
-
         await pool.query('INSERT into waiters (waiter_name) values ($1)', [waiterName]);
         
     }
@@ -41,6 +32,11 @@ module.exports = function (pool) {
     async function getWorkerId(workerName)
     {
         let waiterName = await pool.query('SELECT id FROM waiters WHERE waiter_name=$1', [workerName]);
+
+        if(waiterName.rows[0].id === 0){
+            await pool.query('');
+
+        }
 
         let waiterId = waiterName.rows[0].id;
 
@@ -89,27 +85,29 @@ module.exports = function (pool) {
             const element = dayShift[index];
             await pool.query('INSERT into shifts (waiter_id, week_day_id) values ($1,$2)', [workerShift, element]); 
         }
-
-
-
-        // let data = await dataCollected(name);
-        // console.log("Data",data);
     }
 
     async function dataCollected() 
     {
-        //let dataCollection = await pool.query("SELECT id, week_day from week_days join shifts ON shifts.week_day_id = week_days.id join waiters.id = shifts.waiter_id");
-
         let data = await pool.query("SELECT week_days.id, week_days.week_day from week_days join shifts ON shifts.week_day_id = week_days.id WHERE waiter_id = shifts.waiter_id");
-        
         return data;
     }
 
-
+    async function dayMenu() 
+    {    
+        let dayPicked = await pool.query('SELECT * FROM week_days');
+      
+        for(var k=0; k < dayPicked.rows.length ; k++){  dayPicked.rows[k].checked = true; }
+        return dayPicked.rows;
+    }    
+       
+    
 
     async function getShiftId() {
-        let allShifts = await pool.query('SELECT  week_day_id FROM shifts');
-        return allShifts.rows;
+        let allShifts = await pool.query('SELECT * from week_days join shifts on shifts.week_day_id=week_days.id join waiters on waiters.id = shifts.waiter_id');
+        
+        let convertShift = allShifts.rows;
+        return convertShift;
     }
 
     async function getWaiterId() {
@@ -139,7 +137,8 @@ module.exports = function (pool) {
 
         getShiftId,
         getWaiterId,
-        dataCollected
+        dataCollected,
+        dayMenu
     }
 
 }
