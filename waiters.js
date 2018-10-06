@@ -87,6 +87,13 @@ module.exports = function (pool) {
         }
     }
 
+    async function getShift(waiterName)
+    {
+      let addedShifts = await pool.query(` SELECT DISTINCT waiter_name, day_name from shifts join waiters on waiters.id = shifts.waiter_id join weekdays on weekdays.id = shifts.weekday_id WHERE waiters.waiter_name = '${waiterName}'`)
+      
+      return addedShifts.rows;
+    }
+
     async function dataCollected() 
     {
         let data = await pool.query("SELECT week_days.id, week_days.week_day from week_days join shifts ON shifts.week_day_id = week_days.id WHERE waiter_id = shifts.waiter_id");
@@ -143,7 +150,8 @@ module.exports = function (pool) {
         getShiftId,
         getWaiterId,
         dataCollected,
-        dayMenu
+        dayMenu,
+        getShift
     }
 
 }

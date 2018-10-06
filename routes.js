@@ -30,11 +30,11 @@ module.exports = function (waitersFac) {
 
             let workerId = await waitersFac.getWaiterId(name);
 
-          
+            
 
-            //let days = await waitersFac.dataCollected(name);
+            //let daysCo = await waitersFac.getShift(name);
 
-           // /console.log(days);
+           // /console.log(daysCo);
             res.redirect('/waiters/' + name)
         
            
