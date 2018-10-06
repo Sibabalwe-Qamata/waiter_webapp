@@ -60,8 +60,6 @@ app.use(session({
 
 // initialise the flash middleware
 app.use(flash());
-
-//app.get('/', waiterRoutes.show);
 app.get('/waiters/:name', waiterRoutes.show);
 app.post('/waiters/:name', waiterRoutes.showAdd);
 app.get('/days', waiterRoutes.admin);

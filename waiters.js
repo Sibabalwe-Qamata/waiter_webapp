@@ -25,7 +25,7 @@ module.exports = function (pool) {
         }
         else if(Array.isArray(ShiftDay) === false){ 
             let DayList = ShiftDay.split();
-            return DayList  
+            return DayList; 
         }
     }
 

@@ -22,8 +22,6 @@ module.exports = function (waitersFac) {
                 day
             } = req.body;
             let staffName = await waitersFac.enterWaiterName(name);
-          
-
             let workDay = await waitersFac.checkDays(day);
 
             let getWorker = await waitersFac.addShifts(name,day);
@@ -38,20 +36,7 @@ module.exports = function (waitersFac) {
 
            // /console.log(days);
             res.redirect('/waiters/' + name)
-            //console.log("From the DB: ", staffName);
-
-
-            //console.log("WorkDay: ", workDay);
-
-            // if (staffName.message === true) {
-            //     req.flash('info', result.message);
-            //     res.redirect('/waiters/' + name)
-
-            // } else if (staffName.message === false) {
-            //     req.flash('error', result.message);
-            //     res.redirect('/waiters/' + name);
-            // }
-
+        
            
         } catch (error) {
             next(error);
@@ -61,12 +46,7 @@ module.exports = function (waitersFac) {
     async function admin(req, res) {
         try {
 
-           
-
             let data = await waitersFac.dataCollected();
-
-           
-
             let all = await waitersFac.getWaiters();
 
             let allDay = await waitersFac.getDays();
