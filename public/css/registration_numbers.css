@@ -76,6 +76,10 @@ span{
     width: 80%;
 }
 
+.no-bullets {
+    list-style-type: none;
+    text-align:center;
+}
 
 .registrationNum li {
     background-color:grey;

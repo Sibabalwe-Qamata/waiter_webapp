@@ -63,6 +63,7 @@ app.use(flash());
 app.get('/waiters/:name', waiterRoutes.show);
 app.post('/waiters/:name', waiterRoutes.showAdd);
 app.get('/days', waiterRoutes.admin);
+app.get('/days', waiterRoutes.clearDB);
 
 //configure the port number using and environment number
 var portNumber = process.env.PORT || 3314;

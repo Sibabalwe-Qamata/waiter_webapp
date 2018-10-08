@@ -89,18 +89,27 @@ module.exports = function (waitersFac) {
             // console.log("Filterd According to day: Wedsan ",checkDay3)
            
          
-            res.render("days", {checkDay0});
+            res.render("days", {checkDay0,checkDay1, checkDay2,checkDay3, checkDay4,checkDay5, checkDay6});
          
         } catch (error) {
 
         }
     };
 
+    async function clearDB() {
+        try {
+            let clear = await waitersFac.deleteShifts();
+            res.redirect("days");
+        } catch (error) {
+            
+        }
+    }
 
     return {
         show,
         showAdd,
-        admin
+        admin, 
+        clearDB
 
     }
 }

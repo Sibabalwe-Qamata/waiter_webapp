@@ -4,10 +4,7 @@ module.exports = function (pool) {
     async function setWaiter(waiterName) {
         const repeatedWaiter = await duplicateCheck(waiterName);
         if (repeatedWaiter) {
-            return {
-                success: false,
-                message: "Name entered already exists. Please enter another name!"
-            }
+          // await pool.query('DELETE FROM waiters WHERE waiter_name=$1',[waiterName])
         }
         await pool.query('INSERT into waiters (waiter_name) values ($1)', [waiterName]);
         
@@ -142,6 +139,11 @@ module.exports = function (pool) {
         return allDays.rows;
     }
 
+    async function deleteShifts() {
+        let clearDB = await pool.query("DELETE from shifts");
+        
+        return clearDB;  
+    }
     return {
         enterWaiterName: setWaiter,
         addShifts,
@@ -157,7 +159,8 @@ module.exports = function (pool) {
         getWaiterId,
         dataCollected,
         dayMenu,
-        getShift
+        getShift,
+        deleteShifts
     }
 
 }

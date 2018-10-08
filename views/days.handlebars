@@ -13,19 +13,36 @@
 
     <div class="row">
         <div class="twelve columns">
-            <table  class="centerTable">
+            <table  class="centerTable no-bullets">
                 <tr>
-                    <th>Number of Waiters available</th>
-                    <th>Day</th>
-                    <th>Waiter Names</th>
+                    <th>Sunday</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                     <th>Wednesday</th>
+                    <th>Thurday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                </tr>
+                <tr>
+                    <td>  {{#each checkDay0}} <li>{{waiter_name}} </li>{{/each}}</td>
+                   <td>  {{#each checkDay1}} <li>{{waiter_name}} </li>{{/each}}</td>
+                  <td>  {{#each checkDay2}} <li>{{waiter_name}} </li>{{/each}}</td>
+                 <td>  {{#each checkDay3}} <li>{{waiter_name}} </li>{{/each}}</td>
+                   <td>  {{#each checkDay4}} <li>{{waiter_name}} </li>{{/each}}</td>
+                    <td>  {{#each checkDay5}} <li>{{waiter_name}} </li>{{/each}}</td>
+                    <td>  {{#each checkDay6}} <li>{{waiter_name}} </li>{{/each}}</td>
                 </tr>
               
             </table>
-              {{#each checkDay0}}
-               
-                    <p>{{waiter_name}} </p>
-              {{/each}}
+            
         </div>
+    </div>
+<hr>
+    <div class="row">
+        <div class="twelve columns">
+                  <a href="/"><button class="button-primary" type="submit" name="button">Clear Shifts</button></a>
+        </div>
+
     </div>
   
 </div>
