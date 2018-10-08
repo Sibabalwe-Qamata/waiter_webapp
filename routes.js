@@ -52,11 +52,11 @@ module.exports = function (waitersFac) {
             let allDay = await waitersFac.getDays();
 
             let shifts = await waitersFac.getShiftId();
+          
             console.log(shifts);
-
             let days = await waitersFac.dataCollected();
 
-            
+           
          
             res.render("days", shifts);
          

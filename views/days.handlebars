@@ -19,16 +19,12 @@
                     <th>Day</th>
                     <th>Waiter Names</th>
                 </tr>
-                {{#each shifts}}
-                <tr>
-                  
-                    <td>3</td>
-                    <td>Monday</td>
-                    <td>{{shifts.waiter_name}} </td>
-                   
-                </tr>
-                {{/each}}
+              
             </table>
+              {{#each shifts}}
+               
+                    <p>{{waiter_name}} </p>
+              {{/each}}
         </div>
     </div>
   

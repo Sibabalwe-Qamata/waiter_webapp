@@ -102,7 +102,7 @@ module.exports = function (pool) {
 
     async function dayMenu() 
     {    
-        let dayPicked = await pool.query('SELECT * FROM week_days');
+        let dayPicked = await getShiftId();
       
         for(var k=0; k < dayPicked.rows.length ; k++){  dayPicked.rows[k].checked = true; }
         return dayPicked.rows;
