@@ -116,7 +116,13 @@ module.exports = function (pool) {
         let convertShift = allShifts.rows;
 
         convertShift.forEach(waiter => {
-            delete waiter.id, waiter.waiter_id, waiter.week_day_id;
+            delete waiter.id;
+          });
+          convertShift.forEach(waiter => {
+            delete  waiter.waiter_id;
+          });
+          convertShift.forEach(waiter => {
+            delete  waiter.week_day_id;
           });
 
         return convertShift;

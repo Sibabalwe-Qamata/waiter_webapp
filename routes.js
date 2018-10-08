@@ -53,12 +53,43 @@ module.exports = function (waitersFac) {
 
             let shifts = await waitersFac.getShiftId();
           
-            console.log(shifts);
+            //console.log(shifts);
+
             let days = await waitersFac.dataCollected();
 
+            let checkDay0 = shifts.filter( day => {
+                return day.week_day ==="Sunday";
+            })
+
+            let checkDay1 = shifts.filter( day => {
+                return day.week_day ==="Monday";
+            })
+
+            let checkDay2 = shifts.filter( day => {
+                return day.week_day ==="Tuesday";
+            })
+            
+            let checkDay3 = shifts.filter( day => {
+                return day.week_day ==="Wednesday";
+            })
+
+            let checkDay4 = shifts.filter( day => {
+                return day.week_day ==="Thursday";
+            })
+            let checkDay5 = shifts.filter( day => {
+                return day.week_day ==="Friday";
+            })
+            let checkDay6 = shifts.filter( day => {
+                return day.week_day ==="Saturday";
+            })
+
+            const daysCombined = [checkDay0, checkDay1];
+            //console.log("Filterd According to day: Monday + Sunday ",daysCombined)
+            // console.log("Filterd According to day: Tuesday ",checkDay2)
+            // console.log("Filterd According to day: Wedsan ",checkDay3)
            
          
-            res.render("days", shifts);
+            res.render("days", {checkDay0});
          
         } catch (error) {
 
