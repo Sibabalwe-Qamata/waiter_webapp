@@ -3,9 +3,14 @@ module.exports = function (pool) {
 
     async function setWaiter(waiterName) {
         const repeatedWaiter = await duplicateCheck(waiterName);
-        if (repeatedWaiter) {
-          // await pool.query('DELETE FROM waiters WHERE waiter_name=$1',[waiterName])
+
+        const deleteWaiter = await getWorkerId(waiterName);
+        // console.log("Waiter ID: ", repeatedWaiter);
+        // console.log("Worker Id", deleteWaiter);
+        if (repeatedWaiter === true) {
+          await pool.query('DELETE FROM shifts WHERE waiter_id=$1',[deleteWaiter])
         }
+        
         await pool.query('INSERT into waiters (waiter_name) values ($1)', [waiterName]);
         
     }
@@ -29,11 +34,6 @@ module.exports = function (pool) {
     async function getWorkerId(workerName)
     {
         let waiterName = await pool.query('SELECT id FROM waiters WHERE waiter_name=$1', [workerName]);
-
-        if(waiterName.rows[0].id === 0){
-            await pool.query('');
-
-        }
 
         let waiterId = waiterName.rows[0].id;
 

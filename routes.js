@@ -82,12 +82,6 @@ module.exports = function (waitersFac) {
             let checkDay6 = shifts.filter( day => {
                 return day.week_day ==="Saturday";
             })
-
-            const daysCombined = [checkDay0, checkDay1];
-            //console.log("Filterd According to day: Monday + Sunday ",daysCombined)
-            // console.log("Filterd According to day: Tuesday ",checkDay2)
-            // console.log("Filterd According to day: Wedsan ",checkDay3)
-           
          
             res.render("days", {checkDay0,checkDay1, checkDay2,checkDay3, checkDay4,checkDay5, checkDay6});
          
